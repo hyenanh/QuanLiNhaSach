@@ -16,7 +16,7 @@ namespace QuanLiNhaSach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fTheLoai());
+            Application.Run(new fManHinhChinh());
         }
     }
 }

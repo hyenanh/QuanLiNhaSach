@@ -15,6 +15,7 @@ namespace QuanLiNhaSach
         public fTheLoai()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -22,44 +23,48 @@ namespace QuanLiNhaSach
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        // load ds thể loại
+        void LoadTheLoaiList()
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //
+        // lấy thể loại mới từ txb, rồi clear txb
+        int stt = 1;
+        void ThemTheLoai (string txt_TL)
+        {
+            if (txt_TL != "")
+            {
+                dGvTheLoai.Rows.Add("TL" + stt, txbTheLoai.Text);
+                stt++;
+                txbTheLoai.Clear();
+            }    
+            else
+            {
+                MessageBox.Show("Không được để trống","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }                                             
+        }
+
+        private void btnThem_click(object sender, EventArgs e)
+        {
+
+            ThemTheLoai(txbTheLoai.Text);
+        }
+
+        /*private void txbTheLoai_Enter(object sender, EventArgs e)
+        {
+            ThemTheLoai(txbTheLoai.Text);
+        }*/
+
+        private void dGvTheLoai_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnTroVe_click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }
