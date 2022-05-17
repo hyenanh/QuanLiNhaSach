@@ -1,0 +1,13 @@
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\bin\Debug\CongNghePhanMen.exe.config
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\bin\Debug\CongNghePhanMen.exe
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\bin\Debug\CongNghePhanMen.pdb
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.csproj.AssemblyReference.cache
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.fDangNhap.resources
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.Properties.Resources.resources
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.csproj.GenerateResource.cache
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.csproj.CoreCompileInputs.cache
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.exe
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.pdb
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.fThemTaiKhoan.resources
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.fTaiKhoan.resources
+D:\CNPM\CongNghePhanMen\CongNghePhanMen\obj\Debug\CongNghePhanMen.fDoiMatKhau.resources
