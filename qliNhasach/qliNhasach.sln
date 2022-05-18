@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qliNhasach", "qliNhasach\qliNhasach.csproj", "{2177944B-D4FE-4596-98F3-9A87D6B8FE7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2177944B-D4FE-4596-98F3-9A87D6B8FE7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2177944B-D4FE-4596-98F3-9A87D6B8FE7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2177944B-D4FE-4596-98F3-9A87D6B8FE7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2177944B-D4FE-4596-98F3-9A87D6B8FE7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14F5A452-94AC-4070-9733-6228ADAF5E11}
+	EndGlobalSection
+EndGlobal

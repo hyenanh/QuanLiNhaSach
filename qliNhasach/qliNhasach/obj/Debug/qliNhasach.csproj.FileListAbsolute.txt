@@ -1,0 +1,12 @@
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\bin\Debug\qliNhasach.exe.config
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\bin\Debug\qliNhasach.exe
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\bin\Debug\qliNhasach.pdb
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.csproj.AssemblyReference.cache
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.fKhachHang.resources
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.Properties.Resources.resources
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.csproj.GenerateResource.cache
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.csproj.CoreCompileInputs.cache
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.exe
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.pdb
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.fHoaDon.resources
+C:\Users\TUAN\C#\qliNhasach\qliNhasach\obj\Debug\qliNhasach.fPhieuThuTien.resources
