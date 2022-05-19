@@ -1,0 +1,13 @@
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\bin\Debug\ThietKeGiaoDien.exe.config
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\bin\Debug\ThietKeGiaoDien.exe
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\bin\Debug\ThietKeGiaoDien.pdb
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.csproj.AssemblyReference.cache
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.Properties.Resources.resources
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.csproj.GenerateResource.cache
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.csproj.CoreCompileInputs.cache
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.exe
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.pdb
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.fThayDoiQuyDinh.resources
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.fBaoCaoTon.resources
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.fBaoCaoCongNo.resources
+D:\Của Duyên\UIT\Công nghệ phần mềm\ThietKeGiaoDien\ThietKeGiaoDien\obj\Debug\ThietKeGiaoDien.Xem_báo_cáo_công_nợ.resources
