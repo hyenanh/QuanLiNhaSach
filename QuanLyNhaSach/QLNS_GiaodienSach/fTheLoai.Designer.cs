@@ -162,7 +162,7 @@
             this.Controls.Add(this.btTroVe);
             this.Controls.Add(this.gBTheLoai);
             this.Name = "fTheLoai";
-            this.Text = "fTheLoai";
+            this.Text = "Thể loại";
             ((System.ComponentModel.ISupportInitialize)(this.dGvTheLoai)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
