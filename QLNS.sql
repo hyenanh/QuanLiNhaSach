@@ -1,5 +1,5 @@
-﻿
-CREATE DATABASE QUAN_LI_NHA_SACH
+USE QUAN_LI_NHA_SACH
+GO
 create table SACH(
 	MaSach varchar(10) primary key,
 	TenSach nvarchar(250),
@@ -54,12 +54,33 @@ create table PHIEU_THU_TIEN(
 	SoTienThu money,
 	MaTK varchar(10)
 )
-create table THE_LOAI(
-	MaTL varchar(10) primary key,
-	TenTL nvarchar(100)
+--- HÀM AUTO MÃ THỂ LOẠI
+
+CREATE FUNCTION AUTO_MATL()
+RETURNS VARCHAR(5)
+AS
+BEGIN
+	DECLARE @MATL VARCHAR(5)
+	IF (SELECT COUNT(MaTL) FROM THE_LOAI) = 0
+		SET @MATL = '0'
+	ELSE
+		SELECT @MATL = MAX(RIGHT(MaTL, 3)) FROM THE_LOAI
+		SELECT @MATL = CASE
+			WHEN @MATL >= 0 and @MATL < 9 THEN 'TL00' + CONVERT(CHAR, CONVERT(INT, @MATL) + 1)
+			WHEN @MATL >= 9 THEN 'TL0' + CONVERT(CHAR, CONVERT(INT, @MATL) + 1)
+		END
+	RETURN @MATL
+END
+
+CREATE TABLE THE_LOAI
+(
+	MaTL CHAR(5) PRIMARY KEY CONSTRAINT MATL DEFAULT DBO.AUTO_MATL(),
+	TenTL nvarchar (100)
 )
+
+
 create table CTTL(
-	MaTL varchar(10),
+	MaTL char(5),
 	MaSach varchar(10)
 	primary key(MaTL,MaSach)
 )
@@ -121,7 +142,7 @@ create table QUYDINH(
 
 )
 -- bang QUYDINH CHI CO DUNG 1 DONG, chi dc cap nhat ko dc them
-insert into QUYDINH values(150,300,20,20000,0,'05/15/2022')
+insert into QUYDINH values(150,300,20,20000,0,'15/05/2022')
 
 alter table PHIEUNHAP_SACH add foreign key (MaTK) references TAI_KHOAN(MaTK)
 
@@ -492,18 +513,19 @@ insert into TAI_KHOAN(MaTK,email,TenDN,MatKhau,MaPhanQuyen,HoTenNV,DiaChi,SDT,Gi
 --THELOAI
 
 
-insert into THE_LOAI(MaTL,TenTL) values ('TL01',N'sách giáo khoa')
-insert into THE_LOAI(MaTL,TenTL) values ('TL02',N'Khoa học vũ trụ')
-insert into THE_LOAI(MaTL,TenTL) values ('TL03',N'truyện cổ tích')
-insert into THE_LOAI(MaTL,TenTL) values ('TL04',N'ẩm thực')
-insert into THE_LOAI(MaTL,TenTL) values ('TL05',N'tâm lí tình cảm')
+insert into THE_LOAI(MaTL,TenTL) values ('TL001',N'sách giáo khoa')
+insert into THE_LOAI(MaTL,TenTL) values ('TL002',N'Khoa học vũ trụ')
+insert into THE_LOAI(MaTL,TenTL) values ('TL003',N'truyện cổ tích')
+insert into THE_LOAI(MaTL,TenTL) values ('TL004',N'ẩm thực')
+insert into THE_LOAI(MaTL,TenTL) values ('TL005',N'tâm lí tình cảm')
+
 --CHITIETTHELOAI
 
-insert into CTTL(MaTL,MaSach)values ('TL01','S03')
-insert into CTTL(MaTL,MaSach)values ('TL01','S04')
-insert into CTTL(MaTL,MaSach)values ('TL01','S05')
-insert into CTTL(MaTL,MaSach)values ('TL02','S01')
-insert into CTTL(MaTL,MaSach)values ('TL02','S02')
+insert into CTTL(MaTL,MaSach)values ('TL001','S03')
+insert into CTTL(MaTL,MaSach)values ('TL001','S04')
+insert into CTTL(MaTL,MaSach)values ('TL001','S05')
+insert into CTTL(MaTL,MaSach)values ('TL002','S01')
+insert into CTTL(MaTL,MaSach)values ('TL002','S02')
 --PHIEUNHAPSACH
 
 insert into PHIEUNHAP_SACH(MaPhieuNhap,NgayTaoPhieu,NgayNhap,MaTk)values ('PN01','02/02/2022','04/02/2022','TK01')
@@ -611,7 +633,6 @@ insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S02');
 insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S03');
 insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S04');
 insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S05');
-
 
 
 
