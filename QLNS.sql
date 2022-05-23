@@ -9,7 +9,7 @@ create table SACH(
 	SoLuongTon int
 )
 
-create table PHIEUNHAP_SACH(
+create table PHIEU_NHAP_SACH(
 	MaPhieuNhap varchar(10) primary key,
 	NgayTaoPhieu smalldatetime,
 	NgayNhap smalldatetime,
