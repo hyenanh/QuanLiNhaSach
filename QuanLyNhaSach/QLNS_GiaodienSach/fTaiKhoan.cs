@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLNS_GiaodienSach.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,64 +13,53 @@ namespace QLNS_GiaodienSach
 {
     public partial class fTaiKhoan : Form
     {
-        public fTaiKhoan()
+        private string TenDN;
+
+        public fTaiKhoan(string TenDN)
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpNgaySinh_ValueChanged(object sender, EventArgs e)
-        {
-
+            this.TenDN = TenDN;
         }
 
         private void fTaiKhoan_Load(object sender, EventArgs e)
         {
+            //Truyền dữ liệu vào
+            DataTable dt = new DataTable();
+            string queryTimKiemTaiKhoan = "SELECT * FROM TAI_KHOAN WHERE TenDN='" + TenDN + "'";
+            dt=DataProvider.Instance.ExcuteQuery(queryTimKiemTaiKhoan);
+            DataRow row=dt.Rows[0];
+            txbMaNhanVien.Text = row["MaTK"] + "";
+            txbTenNhanVien.Text = row["HoTenNV"] + "";
+            txbDiaChi.Text = row["DiaChi"] + "";
+            txbSoDienThoai.Text = row["SDT"] + "";
+            txbEmail.Text = row["email"] + "";
+            txbTenDangNhap.Text = row["TenDN"] + "";
+            txbGioiTinh.Text = row["GioiTinh"] + "";
+            dtpNgaySinh.Text = row["NgaySinh"] + "";
+            //Chuc vu
+            string queryTimChucVu = "SELECT TenPhanQuyen FROM TAI_KHOAN, PHANQUYEN" +
+                                        " WHERE TAI_KHOAN.MaPhanQuyen=PHANQUYEN.MaPhanQuyen" +
+                                        " AND TenDN='" + TenDN + "'";
+            txbChucVu.Text = (string) DataProvider.Instance.ExcuteScalar(queryTimChucVu);
 
         }
 
-        private void lbMaNhanVien_Click(object sender, EventArgs e)
+       
+        
+
+        private void btnDoiMatKhau_Click(object sender, EventArgs e)
         {
-
+            fDoiMatKhau form = new fDoiMatKhau(TenDN);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void btnTroVe_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbSoDienThoai_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbEmail_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbTenDangNhap_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

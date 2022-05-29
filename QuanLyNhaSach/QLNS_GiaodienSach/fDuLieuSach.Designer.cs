@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fDuLieuSach));
             this.btnTroVe = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.lbDonGiaBan = new System.Windows.Forms.Label();
@@ -73,36 +72,25 @@
             // 
             // btnTroVe
             // 
+            this.btnTroVe.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnTroVe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnTroVe.Location = new System.Drawing.Point(933, 498);
             this.btnTroVe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTroVe.Name = "btnTroVe";
-            this.btnTroVe.Size = new System.Drawing.Size(107, 30);
+            this.btnTroVe.Size = new System.Drawing.Size(107, 36);
             this.btnTroVe.TabIndex = 26;
             this.btnTroVe.Text = "Trở về";
             this.btnTroVe.UseVisualStyleBackColor = true;
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.BackColor = System.Drawing.Color.Transparent;
-            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(933, 359);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(107, 30);
-            this.btnXoa.TabIndex = 25;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = false;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.btnTroVe.Click += new System.EventHandler(this.btnTroVe_Click);
             // 
             // btnCapNhat
             // 
             this.btnCapNhat.BackColor = System.Drawing.Color.Transparent;
             this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCapNhat.Location = new System.Drawing.Point(805, 360);
+            this.btnCapNhat.Location = new System.Drawing.Point(933, 369);
             this.btnCapNhat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(107, 30);
+            this.btnCapNhat.Size = new System.Drawing.Size(107, 36);
             this.btnCapNhat.TabIndex = 24;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.UseVisualStyleBackColor = false;
@@ -179,7 +167,7 @@
             this.btnTimKiemTen.Location = new System.Drawing.Point(444, 10);
             this.btnTimKiemTen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTimKiemTen.Name = "btnTimKiemTen";
-            this.btnTimKiemTen.Size = new System.Drawing.Size(107, 30);
+            this.btnTimKiemTen.Size = new System.Drawing.Size(107, 36);
             this.btnTimKiemTen.TabIndex = 3;
             this.btnTimKiemTen.Text = "Tìm";
             this.btnTimKiemTen.UseVisualStyleBackColor = true;
@@ -391,7 +379,7 @@
             // dgvThongTinSach
             // 
             this.dgvThongTinSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvThongTinSach.Location = new System.Drawing.Point(6, 52);
+            this.dgvThongTinSach.Location = new System.Drawing.Point(6, 64);
             this.dgvThongTinSach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvThongTinSach.Name = "dgvThongTinSach";
             this.dgvThongTinSach.ReadOnly = true;
@@ -401,16 +389,18 @@
             this.dgvThongTinSach.Size = new System.Drawing.Size(1034, 221);
             this.dgvThongTinSach.TabIndex = 15;
             this.dgvThongTinSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvThongTinSach_CellClick);
+            this.dgvThongTinSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvThongTinSach_CellContentClick);
             // 
             // fDuLieuSach
             // 
+            this.AcceptButton = this.btnCapNhat;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.btnTroVe;
             this.ClientSize = new System.Drawing.Size(1052, 550);
             this.Controls.Add(this.btnTroVe);
-            this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
@@ -449,7 +439,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnTroVe;
-        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label lbDonGiaBan;

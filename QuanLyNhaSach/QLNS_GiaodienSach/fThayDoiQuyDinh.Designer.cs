@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpThayDoiQuyDinh = new System.Windows.Forms.DateTimePicker();
             this.lblThoiGianThayDoi = new System.Windows.Forms.Label();
             this.btnThayDoi = new System.Windows.Forms.Button();
             this.cbSuDungQuyDinh = new System.Windows.Forms.CheckBox();
@@ -46,24 +46,26 @@
             this.lblTieude = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // dtpThayDoiQuyDinh
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(411, 94);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
-            this.dateTimePicker1.TabIndex = 33;
+            this.dtpThayDoiQuyDinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dtpThayDoiQuyDinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpThayDoiQuyDinh.Location = new System.Drawing.Point(411, 96);
+            this.dtpThayDoiQuyDinh.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpThayDoiQuyDinh.Name = "dtpThayDoiQuyDinh";
+            this.dtpThayDoiQuyDinh.Size = new System.Drawing.Size(265, 27);
+            this.dtpThayDoiQuyDinh.TabIndex = 17;
             // 
             // lblThoiGianThayDoi
             // 
             this.lblThoiGianThayDoi.AutoSize = true;
             this.lblThoiGianThayDoi.BackColor = System.Drawing.Color.Transparent;
             this.lblThoiGianThayDoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblThoiGianThayDoi.Location = new System.Drawing.Point(77, 94);
+            this.lblThoiGianThayDoi.Location = new System.Drawing.Point(77, 103);
             this.lblThoiGianThayDoi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThoiGianThayDoi.Name = "lblThoiGianThayDoi";
             this.lblThoiGianThayDoi.Size = new System.Drawing.Size(140, 20);
-            this.lblThoiGianThayDoi.TabIndex = 32;
+            this.lblThoiGianThayDoi.TabIndex = 16;
             this.lblThoiGianThayDoi.Text = "Thời gian thay đổi";
             // 
             // btnThayDoi
@@ -77,6 +79,7 @@
             this.btnThayDoi.TabIndex = 31;
             this.btnThayDoi.Text = "Thay đổi";
             this.btnThayDoi.UseVisualStyleBackColor = false;
+            this.btnThayDoi.Click += new System.EventHandler(this.btnThayDoi_Click);
             // 
             // cbSuDungQuyDinh
             // 
@@ -105,6 +108,7 @@
             // 
             // btnTroVe
             // 
+            this.btnTroVe.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnTroVe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnTroVe.Location = new System.Drawing.Point(569, 430);
             this.btnTroVe.Margin = new System.Windows.Forms.Padding(4);
@@ -113,6 +117,7 @@
             this.btnTroVe.TabIndex = 28;
             this.btnTroVe.Text = "Trở về";
             this.btnTroVe.UseVisualStyleBackColor = true;
+            this.btnTroVe.Click += new System.EventHandler(this.btnTroVe_Click);
             // 
             // label4
             // 
@@ -129,7 +134,7 @@
             this.lblTienNoToiDa.AutoSize = true;
             this.lblTienNoToiDa.BackColor = System.Drawing.Color.Transparent;
             this.lblTienNoToiDa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTienNoToiDa.Location = new System.Drawing.Point(77, 259);
+            this.lblTienNoToiDa.Location = new System.Drawing.Point(77, 262);
             this.lblTienNoToiDa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTienNoToiDa.Name = "lblTienNoToiDa";
             this.lblTienNoToiDa.Size = new System.Drawing.Size(110, 20);
@@ -141,7 +146,7 @@
             this.lblLuongTonToiThieuSauKhiBan.AutoSize = true;
             this.lblLuongTonToiThieuSauKhiBan.BackColor = System.Drawing.Color.Transparent;
             this.lblLuongTonToiThieuSauKhiBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblLuongTonToiThieuSauKhiBan.Location = new System.Drawing.Point(77, 315);
+            this.lblLuongTonToiThieuSauKhiBan.Location = new System.Drawing.Point(77, 319);
             this.lblLuongTonToiThieuSauKhiBan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLuongTonToiThieuSauKhiBan.Name = "lblLuongTonToiThieuSauKhiBan";
             this.lblLuongTonToiThieuSauKhiBan.Size = new System.Drawing.Size(237, 20);
@@ -150,26 +155,29 @@
             // 
             // txbLuongTonToiThieu
             // 
+            this.txbLuongTonToiThieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txbLuongTonToiThieu.Location = new System.Drawing.Point(411, 316);
             this.txbLuongTonToiThieu.Margin = new System.Windows.Forms.Padding(4);
             this.txbLuongTonToiThieu.Name = "txbLuongTonToiThieu";
-            this.txbLuongTonToiThieu.Size = new System.Drawing.Size(265, 22);
+            this.txbLuongTonToiThieu.Size = new System.Drawing.Size(265, 27);
             this.txbLuongTonToiThieu.TabIndex = 24;
             // 
             // txbTienNoToiDa
             // 
+            this.txbTienNoToiDa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txbTienNoToiDa.Location = new System.Drawing.Point(411, 259);
             this.txbTienNoToiDa.Margin = new System.Windows.Forms.Padding(4);
             this.txbTienNoToiDa.Name = "txbTienNoToiDa";
-            this.txbTienNoToiDa.Size = new System.Drawing.Size(265, 22);
+            this.txbTienNoToiDa.Size = new System.Drawing.Size(265, 27);
             this.txbTienNoToiDa.TabIndex = 23;
             // 
             // txbSoLuongTonToiDa
             // 
+            this.txbSoLuongTonToiDa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txbSoLuongTonToiDa.Location = new System.Drawing.Point(411, 202);
             this.txbSoLuongTonToiDa.Margin = new System.Windows.Forms.Padding(4);
             this.txbSoLuongTonToiDa.Name = "txbSoLuongTonToiDa";
-            this.txbSoLuongTonToiDa.Size = new System.Drawing.Size(265, 22);
+            this.txbSoLuongTonToiDa.Size = new System.Drawing.Size(265, 27);
             this.txbSoLuongTonToiDa.TabIndex = 22;
             // 
             // lblSoLluongTonToiDa
@@ -177,7 +185,7 @@
             this.lblSoLluongTonToiDa.AutoSize = true;
             this.lblSoLluongTonToiDa.BackColor = System.Drawing.Color.Transparent;
             this.lblSoLluongTonToiDa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblSoLluongTonToiDa.Location = new System.Drawing.Point(77, 204);
+            this.lblSoLluongTonToiDa.Location = new System.Drawing.Point(77, 205);
             this.lblSoLluongTonToiDa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSoLluongTonToiDa.Name = "lblSoLluongTonToiDa";
             this.lblSoLluongTonToiDa.Size = new System.Drawing.Size(148, 20);
@@ -186,10 +194,11 @@
             // 
             // txbSoLuongNhapItNhat
             // 
+            this.txbSoLuongNhapItNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txbSoLuongNhapItNhat.Location = new System.Drawing.Point(411, 150);
             this.txbSoLuongNhapItNhat.Margin = new System.Windows.Forms.Padding(4);
             this.txbSoLuongNhapItNhat.Name = "txbSoLuongNhapItNhat";
-            this.txbSoLuongNhapItNhat.Size = new System.Drawing.Size(265, 22);
+            this.txbSoLuongNhapItNhat.Size = new System.Drawing.Size(265, 27);
             this.txbSoLuongNhapItNhat.TabIndex = 20;
             // 
             // lblSoLuongNhapItNhat
@@ -219,10 +228,12 @@
             // 
             // fThayDoiQuyDinh
             // 
+            this.AcceptButton = this.btnThayDoi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnTroVe;
             this.ClientSize = new System.Drawing.Size(755, 483);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpThayDoiQuyDinh);
             this.Controls.Add(this.lblThoiGianThayDoi);
             this.Controls.Add(this.btnThayDoi);
             this.Controls.Add(this.cbSuDungQuyDinh);
@@ -239,7 +250,9 @@
             this.Controls.Add(this.lblSoLuongNhapItNhat);
             this.Controls.Add(this.lblTieude);
             this.Name = "fThayDoiQuyDinh";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thay đổi quy định";
+            this.Load += new System.EventHandler(this.fThayDoiQuyDinh_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,7 +260,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpThayDoiQuyDinh;
         private System.Windows.Forms.Label lblThoiGianThayDoi;
         private System.Windows.Forms.Button btnThayDoi;
         private System.Windows.Forms.CheckBox cbSuDungQuyDinh;

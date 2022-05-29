@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fChinhSuaTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fChinhSuaTaiKhoan.Designer.cs">
+      <DependentUpon>fChinhSuaTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="fDoiMatKhau.cs">
@@ -83,18 +89,6 @@
     </Compile>
     <Compile Include="fHoaDon.Designer.cs">
       <DependentUpon>fHoaDon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fNhapBaoCaoCongNo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fNhapBaoCaoCongNo.Designer.cs">
-      <DependentUpon>fNhapBaoCaoCongNo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fNhapBaoCaoTon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fNhapBaoCaoTon.Designer.cs">
-      <DependentUpon>fNhapBaoCaoTon.cs</DependentUpon>
     </Compile>
     <Compile Include="fPhieuNhapSach.cs">
       <SubType>Form</SubType>
@@ -146,6 +140,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PhanQuyen.cs" />
+    <EmbeddedResource Include="fChinhSuaTaiKhoan.resx">
+      <DependentUpon>fChinhSuaTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fDoiMatKhau.resx">
       <DependentUpon>fDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,12 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fManHinhChinh.resx">
       <DependentUpon>fManHinhChinh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fNhapBaoCaoCongNo.resx">
-      <DependentUpon>fNhapBaoCaoCongNo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fNhapBaoCaoTon.resx">
-      <DependentUpon>fNhapBaoCaoTon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fPhieuNhapSach.resx">
       <DependentUpon>fPhieuNhapSach.cs</DependentUpon>

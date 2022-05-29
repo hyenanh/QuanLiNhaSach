@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvDanhSachTon = new System.Windows.Forms.DataGridView();
-            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTonDau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPhatSinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTonCuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnXem = new System.Windows.Forms.Button();
             this.dtpThoiGian = new System.Windows.Forms.DateTimePicker();
             this.TieuDe = new System.Windows.Forms.Label();
@@ -45,12 +40,6 @@
             // 
             this.dgvDanhSachTon.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvDanhSachTon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSachTon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clSTT,
-            this.clSach,
-            this.clTonDau,
-            this.clPhatSinh,
-            this.clTonCuoi});
             this.dgvDanhSachTon.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvDanhSachTon.Location = new System.Drawing.Point(39, 182);
             this.dgvDanhSachTon.Margin = new System.Windows.Forms.Padding(4);
@@ -58,41 +47,6 @@
             this.dgvDanhSachTon.RowHeadersWidth = 51;
             this.dgvDanhSachTon.Size = new System.Drawing.Size(727, 185);
             this.dgvDanhSachTon.TabIndex = 9;
-            // 
-            // clSTT
-            // 
-            this.clSTT.HeaderText = "STT";
-            this.clSTT.MinimumWidth = 6;
-            this.clSTT.Name = "clSTT";
-            this.clSTT.Width = 125;
-            // 
-            // clSach
-            // 
-            this.clSach.HeaderText = "Sách";
-            this.clSach.MinimumWidth = 6;
-            this.clSach.Name = "clSach";
-            this.clSach.Width = 125;
-            // 
-            // clTonDau
-            // 
-            this.clTonDau.HeaderText = "Tồn đầu";
-            this.clTonDau.MinimumWidth = 6;
-            this.clTonDau.Name = "clTonDau";
-            this.clTonDau.Width = 125;
-            // 
-            // clPhatSinh
-            // 
-            this.clPhatSinh.HeaderText = "Phát Sinh";
-            this.clPhatSinh.MinimumWidth = 6;
-            this.clPhatSinh.Name = "clPhatSinh";
-            this.clPhatSinh.Width = 125;
-            // 
-            // clTonCuoi
-            // 
-            this.clTonCuoi.HeaderText = "Tồn cuối";
-            this.clTonCuoi.MinimumWidth = 6;
-            this.clTonCuoi.Name = "clTonCuoi";
-            this.clTonCuoi.Width = 125;
             // 
             // btnXem
             // 
@@ -105,6 +59,7 @@
             this.btnXem.TabIndex = 8;
             this.btnXem.Text = "Xem";
             this.btnXem.UseVisualStyleBackColor = false;
+            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
             // dtpThoiGian
             // 
@@ -142,6 +97,7 @@
             this.btnTroVe.TabIndex = 10;
             this.btnTroVe.Text = "Trở về";
             this.btnTroVe.UseVisualStyleBackColor = true;
+            this.btnTroVe.Click += new System.EventHandler(this.btnTroVe_Click);
             // 
             // fXemBaoCaoTon
             // 
@@ -154,7 +110,9 @@
             this.Controls.Add(this.TieuDe);
             this.Controls.Add(this.btnTroVe);
             this.Name = "fXemBaoCaoTon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xem báo cáo tồn";
+            this.Load += new System.EventHandler(this.fXemBaoCaoTon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachTon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,11 +122,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvDanhSachTon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clSach;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clTonDau;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clPhatSinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clTonCuoi;
         private System.Windows.Forms.Button btnXem;
         private System.Windows.Forms.DateTimePicker dtpThoiGian;
         private System.Windows.Forms.Label TieuDe;

@@ -12,8 +12,7 @@ namespace QLNS_GiaodienSach.DAO
     {
         private static DataProvider instance;
 
-        private string connStr = "Data Source=LAPTOP-3PESOL36\\SQLEXPRESS;Database=CSDL_QuanLyNhaSach;Integrated Security=SSPI";
-
+        private string connStr = "Data Source=LAPTOP-3PESOL36\\SQLEXPRESS;Database=QUAN_LI_NHA_SACH;Integrated Security=SSPI";
         public static DataProvider Instance {
             get
             {

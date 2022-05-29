@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLNS_GiaodienSach.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,18 @@ namespace QLNS_GiaodienSach
 {
     public partial class fManHinhChinh : Form
     {
+        private string TenDN;
         public fManHinhChinh()
         {
             InitializeComponent();
+
         }
+        public fManHinhChinh(string userName)
+        {
+            InitializeComponent();
+            this.TenDN = userName;
+        }
+
 
         private void ChinhSuaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -29,7 +38,31 @@ namespace QLNS_GiaodienSach
 
         private void fManHinhChinh_Load(object sender, EventArgs e)
         {
-
+            lbTenDN.Text = TenDN ;
+            string queryTimTaiKhoan = "SELECT TenPhanQuyen FROM TAI_KHOAN, PHANQUYEN" +
+                                        " WHERE TAI_KHOAN.MaPhanQuyen=PHANQUYEN.MaPhanQuyen" +
+                                        " AND TenDN='" + TenDN + "'";
+            lbChucVu.Text = (string)DataProvider.Instance.ExcuteScalar(queryTimTaiKhoan) + ":";
+            if (PhanQuyen.MaPhanQuyen == 3)//La quan tri vien
+            {
+                sachToolStripMenuItem.Enabled = false;
+                TheLoaiToolStripMenuItem.Enabled = false;
+                LapPhieuToolStripMenuItem.Enabled = false;
+                KhachHangToolStripMenuItem.Enabled = false;
+                BaoCaoToolStripMenuItem.Enabled = false;
+                ThayDoiQuyDinhToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                ThemNguoiDungMoiToolStripMenuItem.Enabled = false;
+                ChinhSuaTaiKhoanToolStripMenuItem.Enabled = false;
+            }
+            if (PhanQuyen.MaPhanQuyen == 1)//La nhan vien
+            {
+                BaoCaoCongNoToolStripMenuItem.Enabled = false;
+                BaoCaoTonToolStripMenuItem.Enabled = false;
+                ThayDoiQuyDinhToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void ThemNguoiDungMoiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,7 +75,7 @@ namespace QLNS_GiaodienSach
 
         private void ThongTinTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fTaiKhoan f=new fTaiKhoan();
+            fTaiKhoan f=new fTaiKhoan(TenDN);
             this.Hide();
             f.ShowDialog();//Xu ly xong Showdialog mới tới các hiển thị khác
             this.Show();
@@ -111,5 +144,23 @@ namespace QLNS_GiaodienSach
             f.ShowDialog();
             this.Show();
         }
+
+        private void DangXuatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fDangNhap f = new fDangNhap();
+            this.Hide();
+            f.ShowDialog();
+        }
+
+
+        private void ChinhSuaTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fChinhSuaTaiKhoan f= new fChinhSuaTaiKhoan();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+
     }
 }

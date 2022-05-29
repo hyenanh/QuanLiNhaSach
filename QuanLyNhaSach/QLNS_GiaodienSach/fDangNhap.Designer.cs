@@ -95,9 +95,9 @@
             // 
             this.txbMatKhau.Location = new System.Drawing.Point(216, 27);
             this.txbMatKhau.Name = "txbMatKhau";
+            this.txbMatKhau.PasswordChar = '●';
             this.txbMatKhau.Size = new System.Drawing.Size(250, 22);
             this.txbMatKhau.TabIndex = 1;
-            this.txbMatKhau.UseSystemPasswordChar = true;
             // 
             // lbMatKhau
             // 
@@ -111,6 +111,7 @@
             // 
             // btnThoat
             // 
+            this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnThoat.Location = new System.Drawing.Point(427, 250);
             this.btnThoat.Name = "btnThoat";
@@ -132,12 +133,15 @@
             this.cbHienThiMatKhau.Text = "Hiển thị mật khẩu";
             this.cbHienThiMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cbHienThiMatKhau.UseVisualStyleBackColor = false;
+            this.cbHienThiMatKhau.CheckedChanged += new System.EventHandler(this.cbHienThiMatKhau_CheckedChanged);
             // 
             // fDangNhap
             // 
+            this.AcceptButton = this.btnDangNhap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.CancelButton = this.btnThoat;
             this.ClientSize = new System.Drawing.Size(591, 312);
             this.Controls.Add(this.cbHienThiMatKhau);
             this.Controls.Add(this.btnThoat);
@@ -165,9 +169,9 @@
         private System.Windows.Forms.Label lbTenDangNhap;
         private System.Windows.Forms.TextBox txbTenDangNhap;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txbMatKhau;
         private System.Windows.Forms.Label lbMatKhau;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.CheckBox cbHienThiMatKhau;
+        private System.Windows.Forms.TextBox txbMatKhau;
     }
 }

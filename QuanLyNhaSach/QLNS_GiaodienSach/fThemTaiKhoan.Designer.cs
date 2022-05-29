@@ -71,7 +71,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.txbChucVu = new System.Windows.Forms.TextBox();
+            this.cbbChucVu = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.panel21 = new System.Windows.Forms.Panel();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -319,6 +319,7 @@
             this.txbMatKhau.Name = "txbMatKhau";
             this.txbMatKhau.Size = new System.Drawing.Size(372, 30);
             this.txbMatKhau.TabIndex = 1;
+            this.txbMatKhau.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -358,6 +359,7 @@
             this.btnThem.TabIndex = 49;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txbDiaChi
             // 
@@ -388,6 +390,7 @@
             this.dtpNgaySinh.Name = "dtpNgaySinh";
             this.dtpNgaySinh.Size = new System.Drawing.Size(187, 27);
             this.dtpNgaySinh.TabIndex = 6;
+            this.dtpNgaySinh.ValueChanged += new System.EventHandler(this.dtpNgaySinh_ValueChanged);
             // 
             // cbbGioiTinh
             // 
@@ -462,7 +465,7 @@
             // txbTenNhanVien
             // 
             this.txbTenNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTenNhanVien.Location = new System.Drawing.Point(276, 15);
+            this.txbTenNhanVien.Location = new System.Drawing.Point(276, 6);
             this.txbTenNhanVien.Name = "txbTenNhanVien";
             this.txbTenNhanVien.Size = new System.Drawing.Size(372, 30);
             this.txbTenNhanVien.TabIndex = 1;
@@ -507,7 +510,7 @@
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.Color.Transparent;
-            this.panel20.Controls.Add(this.txbChucVu);
+            this.panel20.Controls.Add(this.cbbChucVu);
             this.panel20.Controls.Add(this.label23);
             this.panel20.Controls.Add(this.panel21);
             this.panel20.Location = new System.Drawing.Point(33, 418);
@@ -515,13 +518,14 @@
             this.panel20.Size = new System.Drawing.Size(665, 52);
             this.panel20.TabIndex = 47;
             // 
-            // txbChucVu
+            // cbbChucVu
             // 
-            this.txbChucVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbChucVu.Location = new System.Drawing.Point(276, 14);
-            this.txbChucVu.Name = "txbChucVu";
-            this.txbChucVu.Size = new System.Drawing.Size(372, 30);
-            this.txbChucVu.TabIndex = 1;
+            this.cbbChucVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.cbbChucVu.FormattingEnabled = true;
+            this.cbbChucVu.Location = new System.Drawing.Point(276, 10);
+            this.cbbChucVu.Name = "cbbChucVu";
+            this.cbbChucVu.Size = new System.Drawing.Size(373, 28);
+            this.cbbChucVu.TabIndex = 51;
             // 
             // label23
             // 
@@ -562,6 +566,7 @@
             // 
             // btnTroVe
             // 
+            this.btnTroVe.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnTroVe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnTroVe.Location = new System.Drawing.Point(557, 494);
             this.btnTroVe.Name = "btnTroVe";
@@ -569,6 +574,7 @@
             this.btnTroVe.TabIndex = 43;
             this.btnTroVe.Text = "Trở về";
             this.btnTroVe.UseVisualStyleBackColor = true;
+            this.btnTroVe.Click += new System.EventHandler(this.btnTroVe_Click);
             // 
             // panel22
             // 
@@ -659,8 +665,10 @@
             // 
             // fThemTaiKhoan
             // 
+            this.AcceptButton = this.btnThem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnTroVe;
             this.ClientSize = new System.Drawing.Size(761, 552);
             this.Controls.Add(this.panel26);
             this.Controls.Add(this.panel28);
@@ -674,6 +682,7 @@
             this.Controls.Add(this.panel22);
             this.Controls.Add(this.panel24);
             this.Name = "fThemTaiKhoan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm tài khoản";
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
@@ -760,7 +769,6 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.TextBox txbChucVu;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.TextBox textBox9;
@@ -775,5 +783,6 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.ComboBox cbbChucVu;
     }
 }
