@@ -27,11 +27,7 @@ namespace QLNS_GiaodienSach
             string passWord = txbMatKhau.Text;
             if (Login(userName, passWord))
             {
-                string queryLayMaPhanQuyen = "Select MaPhanQuyen from TAI_KHOAN where TenDN='" + userName + "'";
-                string queryLayMaTK = "Select MaTK from TAI_KHOAN where TenDN='" + userName + "'";
-                PhanQuyen.MaPhanQuyen = Int32.Parse((string)DataProvider.Instance.ExcuteScalar(queryLayMaPhanQuyen));
-                PhanQuyen.MaTK=(string)DataProvider.Instance.ExcuteScalar(queryLayMaTK);
-                fManHinhChinh f = new fManHinhChinh(userName);
+                fManHinhChinh f = new fManHinhChinh();
                 this.Hide();
                 f.ShowDialog();//Xu ly xong Showdialog mới tới các hiển thị khác
                 this.Show();
@@ -52,13 +48,11 @@ namespace QLNS_GiaodienSach
                     count = 1;
                 }
             }
-            txbTenDangNhap.Text = "";
-            txbMatKhau.Text = "";
         }
         bool Login(string userName, string passWord)
         {
-            return AccountDAO.Instance.Login(userName, passWord);
-            //return true;
+            //return AccountDAO.Instance.Login(userName, passWord);
+            return true;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -77,18 +71,6 @@ namespace QLNS_GiaodienSach
         private void lbTenDangNhap_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void cbHienThiMatKhau_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbHienThiMatKhau.Checked)
-            {
-                txbMatKhau.PasswordChar = (char)0;
-            }
-            else
-            {
-                txbMatKhau.PasswordChar = '●';
-            }
         }
     }
 }

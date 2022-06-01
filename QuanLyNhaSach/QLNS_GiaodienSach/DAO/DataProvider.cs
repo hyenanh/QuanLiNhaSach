@@ -12,20 +12,21 @@ namespace QLNS_GiaodienSach.DAO
     {
         private static DataProvider instance;
 
-        private string connStr = "Data Source=LAPTOP-3PESOL36\\SQLEXPRESS;Database=QUAN_LI_NHA_SACH;Integrated Security=SSPI";
-        public static DataProvider Instance {
+        private string connStr = "Data Source=DESKTOP-VEK6H5B;Database=QUAN_LI_NHA_SACH;Integrated Security=SSPI";
+        public static DataProvider Instance
+        {
             get
             {
-               if(instance == null) instance = new DataProvider();
-               return DataProvider.instance;
+                if (instance == null) instance = new DataProvider();
+                return DataProvider.instance;
             }
             private set
             {
-                DataProvider.instance = value;  
+                DataProvider.instance = value;
             }
         }
 
-        private DataProvider() {}
+        private DataProvider() { }
 
         public DataTable ExcuteQuery(string query, object[] parameter = null)
         {
@@ -34,13 +35,13 @@ namespace QLNS_GiaodienSach.DAO
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                SqlCommand command=new SqlCommand(query, conn);
+                SqlCommand command = new SqlCommand(query, conn);
 
-                if(parameter != null)
+                if (parameter != null)
                 {
-                    string[] listPara=query.Split(' ');
+                    string[] listPara = query.Split(' ');
                     int i = 0;
-                    foreach(string item in listPara)
+                    foreach (string item in listPara)
                     {
                         if (item.Contains('@'))
                         {
@@ -57,6 +58,9 @@ namespace QLNS_GiaodienSach.DAO
             }
             return dt;
         }
+
+        
+
         public int ExcuteNonQuery(string query, object[] parameter = null)
         {
             int data = 0;
@@ -64,13 +68,13 @@ namespace QLNS_GiaodienSach.DAO
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                SqlCommand command=new SqlCommand(query, conn);
+                SqlCommand command = new SqlCommand(query, conn);
 
-                if(parameter != null)
+                if (parameter != null)
                 {
-                    string[] listPara=query.Split(' ');
+                    string[] listPara = query.Split(' ');
                     int i = 0;
-                    foreach(string item in listPara)
+                    foreach (string item in listPara)
                     {
                         if (item.Contains('@'))
                         {
@@ -80,8 +84,8 @@ namespace QLNS_GiaodienSach.DAO
                         }
                     }
                 }
-                data=command.ExecuteNonQuery();
-                
+                data = command.ExecuteNonQuery();
+
                 conn.Close();
             }
             return data;
@@ -93,13 +97,13 @@ namespace QLNS_GiaodienSach.DAO
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                SqlCommand command=new SqlCommand(query, conn);
+                SqlCommand command = new SqlCommand(query, conn);
 
-                if(parameter != null)
+                if (parameter != null)
                 {
-                    string[] listPara=query.Split(' ');
+                    string[] listPara = query.Split(' ');
                     int i = 0;
-                    foreach(string item in listPara)
+                    foreach (string item in listPara)
                     {
                         if (item.Contains('@'))
                         {
@@ -109,8 +113,8 @@ namespace QLNS_GiaodienSach.DAO
                         }
                     }
                 }
-                data=command.ExecuteScalar();
-                
+                data = command.ExecuteScalar();
+
                 conn.Close();
             }
             return data;

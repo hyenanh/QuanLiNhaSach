@@ -16,7 +16,7 @@ namespace QLNS_GiaodienSach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fDangNhap());
+            Application.Run(new fPhieuNhapSach());
         }
     }
 }

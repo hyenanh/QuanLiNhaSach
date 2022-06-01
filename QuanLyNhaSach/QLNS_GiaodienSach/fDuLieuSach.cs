@@ -29,38 +29,31 @@ namespace QLNS_GiaodienSach
 
         private void HienThiTheLoai(ComboBox cbTheLoai)
         {
-            string queryHienThiTheLoai = "select * from THE_LOAI";
+            string queryHienThiTheLoai = "select * from TheLoai";
             DataTable dt = DataProvider.Instance.ExcuteQuery(queryHienThiTheLoai);
             finished = false;
             cbTheLoai.DataSource = dt;
-            cbTheLoai.DisplayMember = "TenTL";
-            cbTheLoai.ValueMember = "TenTL";
+            cbTheLoai.DisplayMember = "MaTheLoai";
+            cbTheLoai.ValueMember = "TheLoai";
             finished = true;
         }
         private void HienThiToanBoSanPham()
         { 
             
-            string queryHienThiSanPham = "SELECT SACH.MaSach, TenSach, TenTL, TacGia, DonGiaNhap, DonGiaBan, SoLuongTon FROM SACH,  THE_LOAI, CTTL" +
-                " where SACH.MaSach=CTTL.MaSach and CTTL.MaTL=THE_LOAI.MaTL";
+            string queryHienThiSanPham = "SELECT * FROM dbo.Sach";
             dt= DataProvider.Instance.ExcuteQuery(queryHienThiSanPham);
             dgvThongTinSach.DataSource = dt;
         }
 
         private void txbTimKiemTen_TextChanged(object sender, EventArgs e)
         {
-            string queryTimKiem = "Select SACH.MaSach, TenSach, TenTL, TacGia, DonGiaNhap, DonGiaBan, SoLuongTon" +
-                " from SACH, THE_LOAI, CTTL" +
-                " where SACH.MaSach=CTTL.MaSach and CTTL.MaTL=THE_LOAI.MaTL AND" +
-                " TenSach like N'%" + txbTimKiemTen.Text + "%'";
+            string queryTimKiem = "Select * from Sach where TenSach like N'%" + txbTimKiemTen.Text + "%'";
             dt = DataProvider.Instance.ExcuteQuery(queryTimKiem);
             dgvThongTinSach.DataSource= dt;
         }
         private void btnTimKiemTen_Click(object sender, EventArgs e)
         {
-            string queryTimKiem = "Select SACH.MaSach, TenSach, TenTL, TacGia, DonGiaNhap, DonGiaBan, SoLuongTon" +
-                " from SACH, THE_LOAI, CTTL" +
-                " where SACH.MaSach=CTTL.MaSach and CTTL.MaTL=THE_LOAI.MaTL AND" +
-                " TenSach like N'%" + txbTimKiemTen.Text + "%'";
+            string queryTimKiem = "Select * from Sach where TenSach like N'%" + txbTimKiemTen.Text + "%'";
             dt = DataProvider.Instance.ExcuteQuery(queryTimKiem);
             dgvThongTinSach.DataSource = dt;
         }
@@ -71,10 +64,7 @@ namespace QLNS_GiaodienSach
                 return;
             if (finished == false) return;
             string TenTheLoai = (string)cbbTheLoai.SelectedValue;
-            string queryChonTheLoai = "Select SACH.MaSach, TenSach, TenTL, TacGia, DonGiaNhap, DonGiaBan, SoLuongTon" +
-               " from SACH, THE_LOAI, CTTL" +
-               " where SACH.MaSach=CTTL.MaSach AND CTTL.MaTL=THE_LOAI.MaTL AND" +
-               " THE_LOAI.TenTL=N'" + TenTheLoai + "'";
+            string queryChonTheLoai = "Select * from Sach where TheLoai=N'" + TenTheLoai + "'";
             dt = DataProvider.Instance.ExcuteQuery(queryChonTheLoai);
             dgvThongTinSach.DataSource=dt;
 
@@ -95,9 +85,10 @@ namespace QLNS_GiaodienSach
             txbDonGiaNhap.Text = row["DonGiaNhap"] + "";
             txbDonGiaBan.Text = row["DonGiaBan"] + "";
             txbSoLuongTon.Text = row["SoLuongTon"] + "";
-            //Hien thi the loai 
+            //Hien thi the loai
             HienThiTheLoai(cbbTheLoaiSua);
-            cbbTheLoaiSua.SelectedValue = row["TenTL"]+"";
+            //Hien the loai dang duoc chon
+            cbbTheLoaiSua.SelectedValue = row["TheLoai"] + "";
 
         }
 
@@ -108,19 +99,15 @@ namespace QLNS_GiaodienSach
                 MessageBox.Show("Bạn chưa chọn dòng nào để sửa");
                 return;
             }
-            string queryCapNhatSach = "UPDATE SACH" +
-                                " SET TenSach=N'" + txbTenSach.Text + "', TacGia=N'" + txbTacGia.Text  + "', DonGiaNhap='"
-                                + txbDonGiaNhap.Text + "', DonGiaBan='" + txbDonGiaBan.Text +
-                                "' FROM SACH"
-                                + " WHERE SACH.MaSach='" + txbMaSach.Text +"'";
-            string queryCapNhatTheLoai = "UPDATE CTTL" +
-                                        " SET MATL = (SELECT MATL FROM THE_LOAI WHERE THE_LOAI.TenTL= N'" + cbbTheLoaiSua.SelectedValue +
-                                        "') FROM SACH JOIN CTTL ON SACH.MaSach=CTTL.MaSach JOIN THE_LOAI ON CTTL.MaTL=THE_LOAI.MaTL" +
-                                        " WHERE SACH.MaSach='" + txbMaSach.Text + "'";
-            int kqCapNhatSach = DataProvider.Instance.ExcuteNonQuery(queryCapNhatSach);
-            int kqCapNhatTheLoai= DataProvider.Instance.ExcuteNonQuery(queryCapNhatTheLoai);
+            string queryCapNhat = "UPDATE SACH" +
+                                " SET TenSach=N'" + txbTenSach.Text + "', TacGia='" + txbTacGia.Text +
+                                "', TheLoai= N'" + cbbTheLoaiSua.SelectedValue + "', DonGiaNhap='"
+                                + txbDonGiaNhap.Text + "', DonGiaBan='" + txbDonGiaBan.Text 
+                                + "' WHERE MaSach='" + txbMaSach.Text +"'";
 
-            if (kqCapNhatSach > 0 && kqCapNhatTheLoai >0)
+            int kq = DataProvider.Instance.ExcuteNonQuery(queryCapNhat);
+
+            if (kq > 0)
             {
                 HienThiToanBoSanPham();
                 MessageBox.Show("Cập nhật thành công");
@@ -129,14 +116,25 @@ namespace QLNS_GiaodienSach
                 MessageBox.Show("Cập nhật thất bại");
         }
 
-        private void btnTroVe_Click(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (vt == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn dòng nào để sửa");
+                return;
+            }
+            string queryDelete = "DELETE FROM Sach WHERE MaSach='" + txbMaSach.Text + "'";
+            int kq= DataProvider.Instance.ExcuteNonQuery(queryDelete);
+            if(kq > 0)
+            {
+                HienThiToanBoSanPham();
+                MessageBox.Show("Đã xóa thành công");
+            }
+            else
+                MessageBox.Show("Xóa thất bại");
+
         }
 
-        private void dgvThongTinSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
     }
 }

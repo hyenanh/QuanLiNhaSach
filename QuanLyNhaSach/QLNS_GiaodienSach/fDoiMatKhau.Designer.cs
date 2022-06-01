@@ -38,8 +38,6 @@
             this.txbMatKhauHienTai = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbTaiKhoan = new System.Windows.Forms.Label();
-            this.txbTenTaiKhoan = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +52,6 @@
             this.cbHienThiMatKhau.TabIndex = 20;
             this.cbHienThiMatKhau.Text = "Hiển thị mật khẩu";
             this.cbHienThiMatKhau.UseVisualStyleBackColor = false;
-            this.cbHienThiMatKhau.CheckedChanged += new System.EventHandler(this.cbHienThiMatKhau_CheckedChanged);
             // 
             // btnTroVe
             // 
@@ -65,7 +62,6 @@
             this.btnTroVe.TabIndex = 19;
             this.btnTroVe.Text = "Trở về";
             this.btnTroVe.UseVisualStyleBackColor = true;
-            this.btnTroVe.Click += new System.EventHandler(this.btnTroVe_Click);
             // 
             // btnCapNhat
             // 
@@ -76,13 +72,11 @@
             this.btnCapNhat.TabIndex = 18;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.UseVisualStyleBackColor = true;
-            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // txbNhapLaiMatKhau
             // 
             this.txbNhapLaiMatKhau.Location = new System.Drawing.Point(260, 121);
             this.txbNhapLaiMatKhau.Name = "txbNhapLaiMatKhau";
-            this.txbNhapLaiMatKhau.PasswordChar = '●';
             this.txbNhapLaiMatKhau.Size = new System.Drawing.Size(302, 22);
             this.txbNhapLaiMatKhau.TabIndex = 17;
             // 
@@ -101,7 +95,6 @@
             // 
             this.txbMatKhauMoi.Location = new System.Drawing.Point(260, 70);
             this.txbMatKhauMoi.Name = "txbMatKhauMoi";
-            this.txbMatKhauMoi.PasswordChar = '●';
             this.txbMatKhauMoi.Size = new System.Drawing.Size(302, 22);
             this.txbMatKhauMoi.TabIndex = 15;
             // 
@@ -120,7 +113,6 @@
             // 
             this.txbMatKhauHienTai.Location = new System.Drawing.Point(260, 19);
             this.txbMatKhauHienTai.Name = "txbMatKhauHienTai";
-            this.txbMatKhauHienTai.PasswordChar = '●';
             this.txbMatKhauHienTai.Size = new System.Drawing.Size(302, 22);
             this.txbMatKhauHienTai.TabIndex = 13;
             // 
@@ -146,47 +138,22 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txbMatKhauHienTai);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 60);
+            this.panel1.Location = new System.Drawing.Point(12, 18);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(594, 245);
             this.panel1.TabIndex = 21;
             // 
-            // lbTaiKhoan
-            // 
-            this.lbTaiKhoan.AutoSize = true;
-            this.lbTaiKhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbTaiKhoan.Location = new System.Drawing.Point(375, 21);
-            this.lbTaiKhoan.Name = "lbTaiKhoan";
-            this.lbTaiKhoan.Size = new System.Drawing.Size(81, 20);
-            this.lbTaiKhoan.TabIndex = 22;
-            this.lbTaiKhoan.Text = "Tài khoản";
-            // 
-            // txbTenTaiKhoan
-            // 
-            this.txbTenTaiKhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbTenTaiKhoan.Location = new System.Drawing.Point(474, 19);
-            this.txbTenTaiKhoan.Name = "txbTenTaiKhoan";
-            this.txbTenTaiKhoan.ReadOnly = true;
-            this.txbTenTaiKhoan.Size = new System.Drawing.Size(132, 27);
-            this.txbTenTaiKhoan.TabIndex = 23;
-            // 
             // fDoiMatKhau
             // 
-            this.AcceptButton = this.btnCapNhat;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnTroVe;
-            this.ClientSize = new System.Drawing.Size(618, 316);
-            this.Controls.Add(this.txbTenTaiKhoan);
-            this.Controls.Add(this.lbTaiKhoan);
+            this.ClientSize = new System.Drawing.Size(618, 275);
             this.Controls.Add(this.panel1);
             this.Name = "fDoiMatKhau";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đổi mật khẩu";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -202,7 +169,5 @@
         private System.Windows.Forms.TextBox txbMatKhauHienTai;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbTaiKhoan;
-        private System.Windows.Forms.TextBox txbTenTaiKhoan;
     }
 }
