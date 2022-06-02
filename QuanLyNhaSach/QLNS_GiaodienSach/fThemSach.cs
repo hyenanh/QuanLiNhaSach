@@ -68,7 +68,7 @@ namespace QLNS_GiaodienSach
             {
                 txbMaSach.Text =  createMaSach();
                 
-                string query = "insert into SACH (MaSach , TenSach , TacGia , DonGiaNhap, DonGiaBan ) values ( '" + txbMaSach.Text + "' , N'" + txbTenSach.Text + "' , N'" + txbTacGia.Text + "' , 0 , 0  )";
+                string query = "insert into SACH (MaSach , TenSach , TacGia , DonGiaNhap, DonGiaBan, SoLuongTon ) values ( '" + txbMaSach.Text + "' , N'" + txbTenSach.Text + "' , N'" + txbTacGia.Text + "' , 0 , 0, 0  )";
                 DataTable data = DataProvider.Instance.ExcuteQuery(query);
 
                 // them vao bang chi tiet the loai

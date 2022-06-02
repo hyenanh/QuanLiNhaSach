@@ -61,6 +61,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.txbMaPhieu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnThemPhieuMoi = new System.Windows.Forms.Button();
             this.gbPNS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCT_PhieuDaNhap)).BeginInit();
@@ -127,6 +129,7 @@
             // dtpNgayNhap
             // 
             resources.ApplyResources(this.dtpNgayNhap, "dtpNgayNhap");
+            this.dtpNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgayNhap.MaxDate = new System.DateTime(2022, 12, 25, 23, 59, 59, 0);
             this.dtpNgayNhap.Name = "dtpNgayNhap";
             // 
@@ -325,6 +328,7 @@
             this.panel7.BackColor = System.Drawing.Color.Transparent;
             this.panel7.Controls.Add(this.txbMaPhieu);
             this.panel7.Controls.Add(this.label6);
+            this.panel7.Controls.Add(this.btnThemPhieuMoi);
             resources.ApplyResources(this.panel7, "panel7");
             this.panel7.ForeColor = System.Drawing.Color.Transparent;
             this.panel7.Name = "panel7";
@@ -341,6 +345,22 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Name = "label6";
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnThemPhieu_Click);
+            // 
+            // btnThemPhieuMoi
+            // 
+            resources.ApplyResources(this.btnThemPhieuMoi, "btnThemPhieuMoi");
+            this.btnThemPhieuMoi.ForeColor = System.Drawing.Color.Black;
+            this.btnThemPhieuMoi.Name = "btnThemPhieuMoi";
+            this.btnThemPhieuMoi.UseVisualStyleBackColor = true;
+            this.btnThemPhieuMoi.Click += new System.EventHandler(this.btnThemPhieuMoi_Click);
+            // 
             // fPhieuNhapSach
             // 
             resources.ApplyResources(this, "$this");
@@ -356,6 +376,7 @@
             this.Controls.Add(this.gBNhapSach);
             this.Controls.Add(this.gbCT_PNS);
             this.Controls.Add(this.btnThemSach);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnTroVe);
             this.Controls.Add(this.btnThemPhieu);
             this.ForeColor = System.Drawing.Color.Transparent;
@@ -421,5 +442,7 @@
         private System.Windows.Forms.Label lbThemSachMoi;
         private System.Windows.Forms.TextBox txbTheLoai;
         private System.Windows.Forms.NumericUpDown nUDSoLuong;
+        private System.Windows.Forms.Button btnThemPhieuMoi;
+        private System.Windows.Forms.Button button1;
     }
 }

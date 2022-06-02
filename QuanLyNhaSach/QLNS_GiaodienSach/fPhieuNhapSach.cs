@@ -19,7 +19,7 @@ namespace QLNS_GiaodienSach
             LoadPhieuDaNhap();
             LoadCT_PNS();
             LoadCbbTenSach();
-            addPhieuMoi();
+            createMaPhieuNhap(txbMaPhieu);
                        
         }
         // load bảng phiếu đã nhập
@@ -77,12 +77,12 @@ namespace QLNS_GiaodienSach
 
 
         // 2. add phiếu mơi
-        private void addPhieuMoi()
+        private void addPhieuMoi(string MaPhieuNhap)
         {
-            txbMaPhieu.Text = createMaPhieuNhap();
+            //txbMaPhieu.Text = createMaPhieuNhap();
             //dtpNgayNhap.MaxDate = DateTime.Today;
-            dtpNgayNhap.Text = DateTime.Today.ToString();
-            string query_addPhieu = "insert into PHIEU_NHAP_SACH values ( '" + txbMaPhieu.Text + "' , '"+ dtpNgayNhap.Text+"' , '" + dtpNgayNhap.Text + "' , 'TK01' )";
+            DateTime NgayNhap = dtpNgayNhap.Value;
+            string query_addPhieu = "insert into PHIEU_NHAP_SACH values ( '" + MaPhieuNhap + "' , '"+ NgayNhap.ToString("yyyy-MM-dd") +"' , '" + NgayNhap.ToString("yyyy-MM-dd") + "' , 'TK01' )";
             DataTable dt = DataProvider.Instance.ExcuteQuery(query_addPhieu);
         }
 
@@ -110,17 +110,22 @@ namespace QLNS_GiaodienSach
 
         // 1. tạo mã phiếu
         // tao mã phiếu nhập
-        private string createMaPhieuNhap()
+        private void createMaPhieuNhap(TextBox txvMaPhieu)
         {
-            string MaPNS = "";
+            
             DataTable dt = new DataTable();
             string query = "select MaPhieuNhap from PHIEU_NHAP_SACH";
             dt = DataProvider.Instance.ExcuteQuery(query);
 
             int stt = dt.Rows.Count + 1;
-            MaPNS = "PN" + stt; 
+            if (stt < 10)
+            {
 
-            return MaPNS;
+            txbMaPhieu.Text = "PN0" + stt; 
+            }
+            else txbMaPhieu.Text = "PN" + stt;
+
+            
         }
 
         // 3. chọn đầu sách
@@ -157,45 +162,13 @@ namespace QLNS_GiaodienSach
                                                 
                         string query_addSach = "insert into CT_PNS values ( '" + MaSach + "'," +
                                                                           " '" + txbMaPhieu.Text + "' , " + nUDSoLuong.Value + " )";
+                        DataTable dt_PNS = DataProvider.Instance.ExcuteQuery(query_addSach);
 
-                        string query_KiemTraSLT = "Select SoLuongTon from SACH where MaSach = '" + MaSach + "'";
-                        object SoLuong = DataProvider.Instance.ExcuteScalar(query_KiemTraSLT);
-
-                        if (SoLuong == null)
-                        {
-                            string query_GetSllTonToiDa = "Select SoLuongTonToiDa from QUYDINH";
-                            int SllTonToiDa = (int)DataProvider.Instance.ExcuteScalar(query_GetSllTonToiDa);
-                            MessageBox.Show("slll");
-
-                            if (nUDSoLuong.Value > SllTonToiDa)
-                            {
-                                MessageBox.Show("Vượt quá số lượng tồn tối đa: " + SllTonToiDa, "THÔNG BÁO");
-                            }
-                            else
-                            {
-                                string query_updateSoLuong = "update SACH set SoLuongTon = " + nUDSoLuong.Value + "" +
-                                                                        " , DonGiaNhap = " + Int32.Parse(txbDonGiaNhap.Text) + " " +
+                        string query_updateDonGia = "update SACH set DonGiaNhap = " + Int32.Parse(txbDonGiaNhap.Text) + " " +
                                                     " where MaSach = '" + MaSach + "' ";
-                                DataTable dt_PNS = DataProvider.Instance.ExcuteQuery(query_addSach);
-                                DataProvider.Instance.ExcuteQuery(query_updateSoLuong);
-                                MessageBox.Show("nhánh trên");
-                                LoadCT_PNS();
-                            } 
-                                                        
-                        }
-                        else
-                        {
-                            string query_updateSoLuong = "update SACH set SoLuongTon += " + nUDSoLuong.Value + " " +
-                                                                    " , DonGiaNhap = " + Int32.Parse(txbDonGiaNhap.Text) + " " +
-                                                     " where MaSach = '" + MaSach + "' ";
-                            DataTable dt_PNS = DataProvider.Instance.ExcuteQuery(query_addSach);
-                            MessageBox.Show("xún nhánh dứi");
-
-                            // dư, đã có trigger tự động cập nhật sl tồn
-                            //DataProvider.Instance.ExcuteQuery(query_updateSoLuong);
-
-                            LoadCT_PNS();
-                        }
+                        DataProvider.Instance.ExcuteQuery(query_updateDonGia);
+                        LoadCT_PNS();
+                           
                     }
 
                 }
@@ -207,6 +180,77 @@ namespace QLNS_GiaodienSach
                         
         }
 
+        //Hàm tạo mã tồn kho
+        private string TaoMaTonKho()
+        {
+            DataTable dtTonKho = new DataTable();
+            string queryLayDongTonKho = "SELECT * FROM BC_TONKHO";
+            dtTonKho = DataProvider.Instance.ExcuteQuery(queryLayDongTonKho);
+            string MaTK = "";
+            int stt = dtTonKho.Rows.Count + 1;
+            if (stt < 10)
+            {
+                MaTK = "TKh0" + stt;
+            }
+            else
+            {
+                MaTK = "TKh" + stt;
+            }
+            return MaTK;
+        }
+        //Hàm thêm báo cáo tồn
+        private void ThemMoiVaCapNhatBaoCaoTonQuaPNS(string MaPhieuNhap)
+        {
+            //Kiem tra va insert BCTONKHO
+            //Lay ra tháng của phiếu vừa thêm vào csdl
+            string queryLayThangNam = "SELECT MONTH(NgayNhap), YEAR(NgayNhap) FROM" +
+                                     " PHIEU_NHAP_SACH WHERE MaPhieuNhap='" + MaPhieuNhap +"'";
+            DataTable dtThangNam = new DataTable();
+            dtThangNam = DataProvider.Instance.ExcuteQuery(queryLayThangNam);
+
+            int thang = (int)dtThangNam.Rows[0][0];
+            int nam = (int)dtThangNam.Rows[0][1];
+            //Kiểm tra xem tháng năm có tồn tại trong bảng BCTONKHO chưa
+            string queryLayThangNamBaoCaoTK = "SELECT Thang, nam FROM BC_TONKHO WHERE Thang=" + thang + " and nam=" + nam;
+            DataTable dtCheckThangNam = DataProvider.Instance.ExcuteQuery(queryLayThangNamBaoCaoTK);
+
+            if (dtCheckThangNam.Rows.Count == 0)//Neu thang nam chua co thi insert
+            {
+                string MaTonKho = TaoMaTonKho();
+                string queryInsertBAOCAO_CN = "INSERT INTO BC_TONKHO (MaTonKho, Thang, nam) " +
+                                            "VALUES ('" + MaTonKho + "', " + thang + ", " + nam + ")";
+                DataProvider.Instance.ExcuteNonQuery(queryInsertBAOCAO_CN);
+            }
+            //Lay maTK trong thang moi nhat
+            string querylayMATK = " SELECT MaTonKho from BC_TONKHO where Thang IN (SELECT max(Thang) FROM BC_TONKHO) and nam IN(SELECT max(nam) FROM BC_TONKHO) ";
+            string MATK = (string)DataProvider.Instance.ExcuteScalar(querylayMATK);
+
+            // thêm va update CT_BCCN cho tung MaSach
+            //-Lay cac ma sach tu CT_PNS và duyet
+            string queryLayNhieuMaSach_QuaMaHD = "SELECT MaSach, SoLuong FROM CT_PNS " +
+                                                    "WHERE MaPhieuNhap='" + MaPhieuNhap +"'";
+            DataTable dtMaSach = DataProvider.Instance.ExcuteQuery(queryLayNhieuMaSach_QuaMaHD);
+            for (int i = 0; i < dtMaSach.Rows.Count; i++)
+            {
+                string queryMaSach = "SELECT MaSach FROM CT_BCTONKHO WHERE MaTonKho='" + MATK + "' AND MaSach='" + dtMaSach.Rows[i][0] + "'";
+                string dt = (string)DataProvider.Instance.ExcuteScalar(queryMaSach);
+
+                if (dt == null)
+                {
+                    string queryinsert = "insert into CT_BCTONKHO(MaTonKho,MaSach, TonDau) values ('" + MATK + "','" + dtMaSach.Rows[i][0] + "', 0)";
+
+                    DataProvider.Instance.ExcuteNonQuery(queryinsert);
+                }
+                else
+                {
+                    string queryupdate = "update CT_BCTONKHO" +
+                        " set TonCuoi=" +dtMaSach.Rows[i][1]
+                        + " where MaTonKho='" + MATK + "' and MaSach='" + dtMaSach.Rows[i][0] + "'";
+                    DataProvider.Instance.ExcuteNonQuery(queryupdate);
+                }
+            }
+        }
+
         //7. hoàn tất phiếu đã nhập
         private void btnThemPhieu_Click(object sender, EventArgs e)
         {
@@ -215,13 +259,15 @@ namespace QLNS_GiaodienSach
             {
                 dgvCT_PhieuNhap.ClearSelection();
                 LoadPhieuDaNhap();
-                addPhieuMoi();
+               ThemMoiVaCapNhatBaoCaoTonQuaPNS(txbMaPhieu.Text);
+                createMaPhieuNhap(txbMaPhieu);
+                
             } 
         }
             
 
         private void dgvPhieuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+         {
             if (e.RowIndex == -1) return;
             DataGridViewRow row = dgvPhieuNhap.Rows[e.RowIndex];
 
@@ -245,6 +291,12 @@ namespace QLNS_GiaodienSach
             f.ShowDialog();
             this.Show();
             LoadCbbTenSach();
+        }
+
+        private void btnThemPhieuMoi_Click(object sender, EventArgs e)
+        {
+            addPhieuMoi(txbMaPhieu.Text);
+            MessageBox.Show("Thêm phiếu thành công. Mời bạn thêm sách");
         }
     }
 
