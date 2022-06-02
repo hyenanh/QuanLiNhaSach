@@ -221,25 +221,15 @@ create or alter trigger So_luong_ton_toi_da_DonGiaBan
 on SACH for insert,update
 as
 begin
-	declare @SoLuongTon int,@SoLuongTonToiDa int,@GiaNhap int, @GiaBan int, @MaSach varchar(10)
+		declare @SoLuongTon int,@SoLuongTonToiDa int,@GiaNhap int, @GiaBan int, @MaSach varchar(10)
 
 	select @GiaNhap=DonGiaNhap from inserted
 	select @GiaBan=@GiaNhap*1.05
 	select @MaSach=MaSach from inserted
 
-	select @SoLuongTon=SoLuongTon from inserted
-	select @SoLuongTonToiDa=SoLuongTonToiDa from QUYDINH 
-	if(@SoLuongTon>@SoLuongTonToiDa)
-	begin
-		raiserror(N'vượt quá số lượng tồn tối đa',16,1)
-		rollback
-	end
-	else
-	begin
-		update SACH
-		set DonGiaBan=@GiaBan
-		where  @MaSach=SACH.MaSach
-	end
+	update SACH
+	set DonGiaBan=@GiaBan
+	where  @MaSach=SACH.MaSach
 end
 /*alter table SACH nocheck constraint all
 insert into SACH values('S02',N'sgk vật lí',N'Quang Tuấn',10000,12000,350)
