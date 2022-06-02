@@ -103,30 +103,34 @@ namespace QLNS_GiaodienSach
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (vt == -1)
+            try
             {
-                MessageBox.Show("Bạn chưa chọn dòng nào để sửa");
-                return;
-            }
-            string queryCapNhatSach = "UPDATE SACH" +
-                                " SET TenSach=N'" + txbTenSach.Text + "', TacGia=N'" + txbTacGia.Text  + "', DonGiaNhap='"
-                                + txbDonGiaNhap.Text + "', DonGiaBan='" + txbDonGiaBan.Text +
-                                "' FROM SACH"
-                                + " WHERE SACH.MaSach='" + txbMaSach.Text +"'";
-            string queryCapNhatTheLoai = "UPDATE CTTL" +
-                                        " SET MATL = (SELECT MATL FROM THE_LOAI WHERE THE_LOAI.TenTL= N'" + cbbTheLoaiSua.SelectedValue +
-                                        "') FROM SACH JOIN CTTL ON SACH.MaSach=CTTL.MaSach JOIN THE_LOAI ON CTTL.MaTL=THE_LOAI.MaTL" +
-                                        " WHERE SACH.MaSach='" + txbMaSach.Text + "'";
-            int kqCapNhatSach = DataProvider.Instance.ExcuteNonQuery(queryCapNhatSach);
-            int kqCapNhatTheLoai= DataProvider.Instance.ExcuteNonQuery(queryCapNhatTheLoai);
+                if (vt == -1)
+                {
+                    MessageBox.Show("Bạn chưa chọn dòng nào để sửa");
+                    return;
+                }
+                string queryCapNhatSach = "UPDATE SACH" +
+                                    " SET TenSach=N'" + txbTenSach.Text + "', TacGia=N'" + txbTacGia.Text + "', DonGiaNhap='"
+                                    + txbDonGiaNhap.Text + "', DonGiaBan='" + txbDonGiaBan.Text +
+                                    "' FROM SACH"
+                                    + " WHERE SACH.MaSach='" + txbMaSach.Text + "'";
+                string queryCapNhatTheLoai = "UPDATE CTTL" +
+                                            " SET MATL = (SELECT MATL FROM THE_LOAI WHERE THE_LOAI.TenTL= N'" + cbbTheLoaiSua.SelectedValue +
+                                            "') FROM SACH JOIN CTTL ON SACH.MaSach=CTTL.MaSach JOIN THE_LOAI ON CTTL.MaTL=THE_LOAI.MaTL" +
+                                            " WHERE SACH.MaSach='" + txbMaSach.Text + "'";
+                int kqCapNhatSach = DataProvider.Instance.ExcuteNonQuery(queryCapNhatSach);
+                int kqCapNhatTheLoai = DataProvider.Instance.ExcuteNonQuery(queryCapNhatTheLoai);
 
-            if (kqCapNhatSach > 0 && kqCapNhatTheLoai >0)
-            {
-                HienThiToanBoSanPham();
-                MessageBox.Show("Cập nhật thành công");
+                if (kqCapNhatSach > 0 && kqCapNhatTheLoai > 0)
+                {
+                    HienThiToanBoSanPham();
+                    MessageBox.Show("Cập nhật thành công");
+                }
+                else
+                    MessageBox.Show("Cập nhật thất bại");
             }
-            else
-                MessageBox.Show("Cập nhật thất bại");
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnTroVe_Click(object sender, EventArgs e)

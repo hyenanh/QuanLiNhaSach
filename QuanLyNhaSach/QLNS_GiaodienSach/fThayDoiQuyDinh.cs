@@ -39,23 +39,30 @@ namespace QLNS_GiaodienSach
         }
         private void btnThayDoi_Click(object sender, EventArgs e)
         {
-            int KiemTra;
-            if (cbSuDungQuyDinh.Checked)
-                KiemTra = 1;
-            else KiemTra = 0;
-            //double TienNoToiDa=Convert.ToDouble(txbTienNoToiDa.Text);
+            try
+            {
+                int KiemTra;
+                if (cbSuDungQuyDinh.Checked)
+                    KiemTra = 1;
+                else KiemTra = 0;
+                //double TienNoToiDa=Convert.ToDouble(txbTienNoToiDa.Text);
 
-            DateTime NgayThayDoi = dtpThayDoiQuyDinh.Value;
-            string queryThayDoiQuyDinh = "UPDATE QUYDINH " +
-                                        "SET SoLuongNhapToiThieu=" + int.Parse(txbSoLuongNhapItNhat.Text)
-                                        + ", SoLuongTonItNhatSauBan=" + int.Parse(txbLuongTonToiThieu.Text)
-                                        + ", SoLuongTonToiDa=" + int.Parse(txbSoLuongTonToiDa.Text)
-                                        + ", TienNoToiDa=" + Convert.ToDouble(txbTienNoToiDa.Text)
-                                        + ", DuocThuVuotQuaSoTienKhachDangNoHayKo=" + KiemTra
-                                        + ", NgayCapNhat='" + NgayThayDoi.ToString("yyyy-MM-dd")+"'";
-            int kqCapNhat=DataProvider.Instance.ExcuteNonQuery(queryThayDoiQuyDinh);
-            if (kqCapNhat > 0)
-                MessageBox.Show("Thay đổi quy định thành công", "Thông báo");
+                DateTime NgayThayDoi = dtpThayDoiQuyDinh.Value;
+                string queryThayDoiQuyDinh = "UPDATE QUYDINH " +
+                                            "SET SoLuongNhapToiThieu=" + int.Parse(txbSoLuongNhapItNhat.Text)
+                                            + ", SoLuongTonItNhatSauBan=" + int.Parse(txbLuongTonToiThieu.Text)
+                                            + ", SoLuongTonToiDa=" + int.Parse(txbSoLuongTonToiDa.Text)
+                                            + ", TienNoToiDa=" + Convert.ToDouble(txbTienNoToiDa.Text)
+                                            + ", DuocThuVuotQuaSoTienKhachDangNoHayKo=" + KiemTra
+                                            + ", NgayCapNhat='" + NgayThayDoi.ToString("yyyy-MM-dd") + "'";
+                int kqCapNhat = DataProvider.Instance.ExcuteNonQuery(queryThayDoiQuyDinh);
+                if (kqCapNhat > 0)
+                    MessageBox.Show("Thay đổi quy định thành công", "Thông báo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnTroVe_Click(object sender, EventArgs e)

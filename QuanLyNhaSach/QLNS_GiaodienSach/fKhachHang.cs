@@ -134,7 +134,7 @@ namespace QLNS_GiaodienSach
                 row["diachi"] = txtDiaChi.Text;
                 row["email"] = txtEmail.Text;
                 row["SDT"] = txtSDT.Text;
-                row["TienNo"] = txtTienNo.Text;
+                row["TienNo"] = 0;
 
                 ds.Tables["KhachHang"].Rows.Add(row);
 
@@ -142,6 +142,7 @@ namespace QLNS_GiaodienSach
                 if (kq > 0)
                 {
                     HienThiThongTinKH();
+                    MessageBox.Show("Thêm mới Khách hàng thành công", "Thông báo");
                 }
                 else
                 {

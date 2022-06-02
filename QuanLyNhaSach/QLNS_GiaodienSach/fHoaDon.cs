@@ -238,7 +238,7 @@ namespace QLNS_GiaodienSach
                 else
                 {
                     string queryupdate = "update CT_BCTONKHO" +
-                        " set TonCuoi=TonCuoi-" + dtMaSach.Rows[i][1]
+                        " set TonCuoi=" + dtMaSach.Rows[i][1]
                         + " where MaTonKho='" + MATK + "' and MaSach='" + dtMaSach.Rows[i][0] + "'";
                     DataProvider.Instance.ExcuteNonQuery(queryupdate);
                 }

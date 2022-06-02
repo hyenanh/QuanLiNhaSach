@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThemMoi = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinKhachHang)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,14 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm khách hàng mới";
+            // 
+            // dtpNgaySinh
+            // 
+            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNgaySinh.Location = new System.Drawing.Point(164, 81);
+            this.dtpNgaySinh.Name = "dtpNgaySinh";
+            this.dtpNgaySinh.Size = new System.Drawing.Size(211, 27);
+            this.dtpNgaySinh.TabIndex = 9;
             // 
             // btnSua
             // 
@@ -163,6 +171,7 @@
             // 
             this.txtTienNo.Location = new System.Drawing.Point(164, 118);
             this.txtTienNo.Name = "txtTienNo";
+            this.txtTienNo.ReadOnly = true;
             this.txtTienNo.Size = new System.Drawing.Size(211, 27);
             this.txtTienNo.TabIndex = 3;
             // 
@@ -268,14 +277,6 @@
             this.label1.Size = new System.Drawing.Size(152, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Quản lí khách hàng";
-            // 
-            // dtpNgaySinh
-            // 
-            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgaySinh.Location = new System.Drawing.Point(164, 81);
-            this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(211, 27);
-            this.dtpNgaySinh.TabIndex = 9;
             // 
             // fKhachHang
             // 

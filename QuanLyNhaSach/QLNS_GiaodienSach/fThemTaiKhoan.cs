@@ -22,57 +22,64 @@ namespace QLNS_GiaodienSach
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string queryCheckTenDN = "Select TenDN from TAI_KHOAN where TenDN='" + txbTenDangNhap.Text + "'";
-            DataTable dtCheckTenDN = DataProvider.Instance.ExcuteQuery(queryCheckTenDN);
-            DateTime NgaySinh = dtpNgaySinh.Value;
-            if(txbTenNhanVien.Text == "" || txbDiaChi.Text=="" || txbSoDienThoai.Text=="" || txbEmail.Text=="" || txbTenDangNhap.Text=="" ||txbMatKhau.Text=="" )
+            try
             {
-                MessageBox.Show("VUI LÒNG ĐIỀN ĐỦ THÔNG TIN!", "THÔNG BÁO");
-            }
-            else if (dtCheckTenDN.Rows.Count > 0)
-            {
-                MessageBox.Show("Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác !");
-            }
-            else
-            {
-
-                DataTable dtLayTaiKhoan = new DataTable();
-                string queryLayTaiKhoan = "SELECT * FROM TAI_KHOAN";
-                dtLayTaiKhoan = DataProvider.Instance.ExcuteQuery(queryLayTaiKhoan);
-                string MaTK = "";
-                int stt = dtLayTaiKhoan.Rows.Count + 1;
-                if (stt < 10)
+                string queryCheckTenDN = "Select TenDN from TAI_KHOAN where TenDN='" + txbTenDangNhap.Text + "'";
+                DataTable dtCheckTenDN = DataProvider.Instance.ExcuteQuery(queryCheckTenDN);
+                DateTime NgaySinh = dtpNgaySinh.Value;
+                if (txbTenNhanVien.Text == "" || txbDiaChi.Text == "" || txbSoDienThoai.Text == "" || txbEmail.Text == "" || txbTenDangNhap.Text == "" || txbMatKhau.Text == "")
                 {
-                    MaTK = "TK0" + stt;
+                    MessageBox.Show("VUI LÒNG ĐIỀN ĐỦ THÔNG TIN!", "THÔNG BÁO");
+                }
+                else if (dtCheckTenDN.Rows.Count > 0)
+                {
+                    MessageBox.Show("Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác !");
                 }
                 else
                 {
-                    MaTK = "TK" + stt;
-                }
-                string queryThemTaiKhoan = "INSERT INTO TAI_KHOAN (HoTenNV, GioiTinh, NgaySinh, DiaCHi, SDT, email, TenDN, MatKhau, MaPhanQuyen, MaTK)" +
-                                            " VALUES (N'" + txbTenNhanVien.Text + "', N'"
-                                                            + cbbGioiTinh.SelectedValue + "', '"
-                                                            + NgaySinh.ToString("yyyy-MM-dd") + "', N'"
-                                                            + txbDiaChi.Text + "', '"
-                                                            + txbSoDienThoai.Text + "', '"
-                                                            + txbEmail.Text + "', '"
-                                                            + txbTenDangNhap.Text + "', '"
-                                                            + txbMatKhau.Text + "', '"
-                                                            + cbbChucVu.SelectedValue + "', '"
-                                                            + MaTK + "')";
 
-                int kq=DataProvider.Instance.ExcuteNonQuery(queryThemTaiKhoan);
-                if (kq>0)
-                {
-                    MessageBox.Show("Thêm tài khoản thành công", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataTable dtLayTaiKhoan = new DataTable();
+                    string queryLayTaiKhoan = "SELECT * FROM TAI_KHOAN";
+                    dtLayTaiKhoan = DataProvider.Instance.ExcuteQuery(queryLayTaiKhoan);
+                    string MaTK = "";
+                    int stt = dtLayTaiKhoan.Rows.Count + 1;
+                    if (stt < 10)
+                    {
+                        MaTK = "TK0" + stt;
+                    }
+                    else
+                    {
+                        MaTK = "TK" + stt;
+                    }
+                    string queryThemTaiKhoan = "INSERT INTO TAI_KHOAN (HoTenNV, GioiTinh, NgaySinh, DiaCHi, SDT, email, TenDN, MatKhau, MaPhanQuyen, MaTK)" +
+                                                " VALUES (N'" + txbTenNhanVien.Text + "', N'"
+                                                                + cbbGioiTinh.SelectedValue + "', '"
+                                                                + NgaySinh.ToString("yyyy-MM-dd") + "', N'"
+                                                                + txbDiaChi.Text + "', '"
+                                                                + txbSoDienThoai.Text + "', '"
+                                                                + txbEmail.Text + "', '"
+                                                                + txbTenDangNhap.Text + "', '"
+                                                                + txbMatKhau.Text + "', '"
+                                                                + cbbChucVu.SelectedValue + "', '"
+                                                                + MaTK + "')";
+
+                    int kq = DataProvider.Instance.ExcuteNonQuery(queryThemTaiKhoan);
+                    if (kq > 0)
+                    {
+                        MessageBox.Show("Thêm tài khoản thành công", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    txbTenNhanVien.Text = "";
+                    dtpNgaySinh.Text = DateTime.Now.ToString();
+                    txbDiaChi.Text = "";
+                    txbSoDienThoai.Text = "";
+                    txbEmail.Text = "";
+                    txbTenDangNhap.Text = "";
+                    txbMatKhau.Text = "";
                 }
-                txbTenNhanVien.Text = "";
-                dtpNgaySinh.Text = DateTime.Now.ToString();
-                txbDiaChi.Text = "";
-                txbSoDienThoai.Text = "";
-                txbEmail.Text = "";
-                txbTenDangNhap.Text = "";
-                txbMatKhau.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }

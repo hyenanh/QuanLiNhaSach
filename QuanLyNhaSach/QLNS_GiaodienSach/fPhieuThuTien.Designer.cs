@@ -71,9 +71,9 @@
             // btnThemPhieu
             // 
             this.btnThemPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThemPhieu.Location = new System.Drawing.Point(653, 475);
+            this.btnThemPhieu.Location = new System.Drawing.Point(603, 475);
             this.btnThemPhieu.Name = "btnThemPhieu";
-            this.btnThemPhieu.Size = new System.Drawing.Size(107, 36);
+            this.btnThemPhieu.Size = new System.Drawing.Size(157, 36);
             this.btnThemPhieu.TabIndex = 19;
             this.btnThemPhieu.Text = "Thêm phiếu";
             this.btnThemPhieu.UseVisualStyleBackColor = true;
