@@ -1,5 +1,5 @@
-USE QUAN_LI_NHA_SACH
-GO
+﻿
+CREATE DATABASE QUAN_LI_NHA_SACH
 create table SACH(
 	MaSach varchar(10) primary key,
 	TenSach nvarchar(250),
@@ -55,7 +55,6 @@ create table PHIEU_THU_TIEN(
 	MaTK varchar(10)
 )
 --- HÀM AUTO MÃ THỂ LOẠI
-
 CREATE FUNCTION AUTO_MATL()
 RETURNS VARCHAR(5)
 AS
@@ -78,9 +77,8 @@ CREATE TABLE THE_LOAI
 	TenTL nvarchar (100)
 )
 
-
 create table CTTL(
-	MaTL char(5),
+	MaTL varchar(10),
 	MaSach varchar(10)
 	primary key(MaTL,MaSach)
 )
@@ -142,7 +140,7 @@ create table QUYDINH(
 
 )
 -- bang QUYDINH CHI CO DUNG 1 DONG, chi dc cap nhat ko dc them
-insert into QUYDINH values(150,300,20,20000,0,'15/05/2022')
+insert into QUYDINH values(150,300,20,20000,0,'05/15/2022')
 
 alter table PHIEUNHAP_SACH add foreign key (MaTK) references TAI_KHOAN(MaTK)
 
@@ -186,6 +184,8 @@ begin
 		rollback
 	end
 end
+
+insert into CT_PNS values ( 'SA6', 'PN16' , 500 )
 /*alter table CT_PNS nocheck constraint all
 
 insert into CT_PNS values('S01','PN01',160)
@@ -221,15 +221,25 @@ create or alter trigger So_luong_ton_toi_da_DonGiaBan
 on SACH for insert,update
 as
 begin
-		declare @SoLuongTon int,@SoLuongTonToiDa int,@GiaNhap int, @GiaBan int, @MaSach varchar(10)
+	declare @SoLuongTon int,@SoLuongTonToiDa int,@GiaNhap int, @GiaBan int, @MaSach varchar(10)
 
 	select @GiaNhap=DonGiaNhap from inserted
 	select @GiaBan=@GiaNhap*1.05
 	select @MaSach=MaSach from inserted
 
-	update SACH
-	set DonGiaBan=@GiaBan
-	where  @MaSach=SACH.MaSach
+	select @SoLuongTon=SoLuongTon from inserted
+	select @SoLuongTonToiDa=SoLuongTonToiDa from QUYDINH 
+	if(@SoLuongTon>@SoLuongTonToiDa)
+	begin
+		raiserror(N'vượt quá số lượng tồn tối đa',16,1)
+		rollback
+	end
+	else
+	begin
+		update SACH
+		set DonGiaBan=@GiaBan
+		where  @MaSach=SACH.MaSach
+	end
 end
 /*alter table SACH nocheck constraint all
 insert into SACH values('S02',N'sgk vật lí',N'Quang Tuấn',10000,12000,350)
@@ -246,12 +256,13 @@ begin
 	declare @SoLuongTon int,@SoLuongTonToiThieu int
 	select @SoLuongTon=SoLuongTon from inserted
 	select @SoLuongTonToiThieu=SoLuongTonItNhatSauBan from QUYDINH
-	if(@SoLuongTon<@SoLuongTonToiThieu)
-	begin
-		raiserror(N'số sách còn lại nhỏ hơn SL tồn tối thiểu',16,1)
-		rollback
-	end
+	--if(@SoLuongTon<@SoLuongTonToiThieu)
+	--begin
+		--raiserror(N'số sách còn lại nhỏ hơn SL tồn tối thiểu',16,1)
+		--rollback
+	--end
 end
+
 /*alter table SACH nocheck constraint all
 insert into SACH values('S05',N'sgk hóa',N'Quang Tuấn',10000,12000,21)
 insert into SACH values('S06',N'sgk tiếng anh',N'Quang Tuấn',10000,12000,15)*/
@@ -428,8 +439,14 @@ begin
 		select @toncuoicuathangtruoc=TonCuoi from CT_BCTONKHO a,BC_TONKHO b where a.MaTonKho=b.MaTonKho and a.MaSach=@masach and  b.Thang=@thang-1 and b.nam=@nam
 	end
 	--tồn đầu của sách trong tháng này bằng tồn cuối của sách trong tháng trước, tai thang dau tien nhap thi phai insert
-	select @tondau=@toncuoicuathangtruoc
-
+	if(@toncuoicuathangtruoc != null) 
+	begin
+		select @tondau=@toncuoicuathangtruoc
+	end
+	else
+	begin
+		select @tondau = 0
+	end
 	select @phatsinh=@toncuoi-@tondau
 
 	update CT_BCTONKHO
@@ -503,19 +520,18 @@ insert into TAI_KHOAN(MaTK,email,TenDN,MatKhau,MaPhanQuyen,HoTenNV,DiaChi,SDT,Gi
 --THELOAI
 
 
-insert into THE_LOAI(MaTL,TenTL) values ('TL001',N'sách giáo khoa')
-insert into THE_LOAI(MaTL,TenTL) values ('TL002',N'Khoa học vũ trụ')
-insert into THE_LOAI(MaTL,TenTL) values ('TL003',N'truyện cổ tích')
-insert into THE_LOAI(MaTL,TenTL) values ('TL004',N'ẩm thực')
-insert into THE_LOAI(MaTL,TenTL) values ('TL005',N'tâm lí tình cảm')
-
+insert into THE_LOAI(MaTL,TenTL) values ('TL01',N'sách giáo khoa')
+insert into THE_LOAI(MaTL,TenTL) values ('TL02',N'Khoa học vũ trụ')
+insert into THE_LOAI(MaTL,TenTL) values ('TL03',N'truyện cổ tích')
+insert into THE_LOAI(MaTL,TenTL) values ('TL04',N'ẩm thực')
+insert into THE_LOAI(MaTL,TenTL) values ('TL05',N'tâm lí tình cảm')
 --CHITIETTHELOAI
 
-insert into CTTL(MaTL,MaSach)values ('TL001','S03')
-insert into CTTL(MaTL,MaSach)values ('TL001','S04')
-insert into CTTL(MaTL,MaSach)values ('TL001','S05')
-insert into CTTL(MaTL,MaSach)values ('TL002','S01')
-insert into CTTL(MaTL,MaSach)values ('TL002','S02')
+insert into CTTL(MaTL,MaSach)values ('TL01','S03')
+insert into CTTL(MaTL,MaSach)values ('TL01','S04')
+insert into CTTL(MaTL,MaSach)values ('TL01','S05')
+insert into CTTL(MaTL,MaSach)values ('TL02','S01')
+insert into CTTL(MaTL,MaSach)values ('TL02','S02')
 --PHIEUNHAPSACH
 
 insert into PHIEUNHAP_SACH(MaPhieuNhap,NgayTaoPhieu,NgayNhap,MaTk)values ('PN01','02/02/2022','04/02/2022','TK01')
@@ -565,29 +581,29 @@ insert into BC_CONGNO(MaCongNo,Thang,Nam) values ('CN04','4','2022')
 insert into BC_CONGNO(MaCongNo,Thang,Nam) values ('CN05','5','2022')
 --CT_BCCONGNO
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KH01')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KH02')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KH03')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KH04')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KHO2')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KHO3')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KHO4')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN01','KH05')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KH01')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KH02')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KH03')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KH04')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KHO2')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KHO3')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KHO4')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN02','KH05')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KH01')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KH02')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KH03')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KH04')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KHO2')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KHO3')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KHO4')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN03','KH05')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KH01')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KH02')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KH03')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KH04')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KHO2')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KHO3')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KHO4')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN04','KH05')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KH01')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KH02')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KH03')
-insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KH04')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KHO2')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KHO3')
+insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KHO4')
 insert into CT_BCCONGNO(MaCongNo,MaKH) values ('CN05','KH05')
 
 --BC_TONKHO 
@@ -624,6 +640,10 @@ insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S03');
 insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S04');
 insert into CT_BCTONKHO(MaTonKho,MaSach) values ('TKh05','S05');
 
+UPDATE THE_LOAI
+SET THE_LOAI.MATL = (SELECT MATL FROM THE_LOAI WHERE THE_LOAI.TENTL=N'ẩm thực')
+from SACH JOIN CTTL ON SACH.MaSach=CTTL.MaSach JOIN THE_LOAI ON CTTL.MaTL=THE_LOAI.MaTL 
+WHERE SACH.MaSach='S02';
 
 
 
